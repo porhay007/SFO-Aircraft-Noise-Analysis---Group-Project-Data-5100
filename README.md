@@ -46,7 +46,7 @@ For this project, the following columns were used:
 
 Due to GitHub’s file size limitations, only a sample file (/data/sample_aircraft_noise.csv) containing 100 records is included in this repository for demonstration purposes.
 The full cleaned dataset is publicly available on Kaggle:
-👉 Aircraft Noise Report SFO – Kaggle
+[Aircraft Noise Report SFO – Kaggle] (https://www.kaggle.com/datasets/porhayrouen/aircraft-noise-report-sfo)
 
 **License:**  
 Open Data Commons Public Domain Dedication and License (PDDL)
