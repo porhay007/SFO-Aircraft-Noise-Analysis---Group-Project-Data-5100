@@ -1,3 +1,4 @@
 *.csv filter=lfs diff=lfs merge=lfs -text
 data/Cleaned_Aircraft_Noise_Night_SFO.csv filter=lfs diff=lfs merge=lfs -text
 data/Aircraft_Noise_Reports.csv filter=lfs diff=lfs merge=lfs -text
+Data/Aircraft_Noise_Reports.csv filter=lfs diff=lfs merge=lfs -text
