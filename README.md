@@ -29,19 +29,24 @@ The dataset is obtained from Data.gov – San Francisco International Airport (S
 .
 It contains publicly available data collected by the San Francisco International Airport Noise Office from 2018 to the present.
 
-**Column Used:** 
-- disturbance_date_time  
-- reporter_city  
-- reporter_postal_code  
-- aircraft_pca_altitude  
-- airport_id  
-- operation_type  
-- aircraft_type  
-- hour  
-
 **Description:**  
-This dataset includes noise complaint records reported by residents near SFO.  
-The selected columns help analyze complaint patterns by location, time, and flight characteristics.
+This dataset records aircraft noise complaints made by residents living near SFO flight paths.
+For this project, the following columns were used:
+
+- disturbance_date_time      : Date and time when the noise disturbance occurred
+- reporter_city              : City of the person who reported the complaint
+- reporter_postal_code       : Postal code of the complainant’s address
+- aircraft_pca_altitude      : Altitude of the aircraft during the disturbance
+- airport_id                 : Identifier of the airport (e.g., SFO)
+- operation_type             : Type of operation (Arrival or Departure)
+- aircraft_type              : Aircraft model/type (e.g., Boeing 737, Airbus A320)
+- hour                       : Extracted hour of disturbance, used for night-time analysis (8 PM – 7 AM)
+
+**Access:**
+
+Due to GitHub’s file size limitations, only a sample file (/data/sample_aircraft_noise.csv) containing 100 records is included in this repository for demonstration purposes.
+The full cleaned dataset is publicly available on Kaggle:
+👉 Aircraft Noise Report SFO – Kaggle
 
 **License:**  
 Open Data Commons Public Domain Dedication and License (PDDL)
@@ -51,18 +56,18 @@ Open Data Commons Public Domain Dedication and License (PDDL)
 
 
 
-Analysis
+**Analysis:**
 Describe the notebooks and/or scripts used to perform the analysis. Specify the order in which the code should be run to reproduce the results.
 
-Results
+**Results:**
 Include a short discussion of the findings and what they imply.
 
-Authors
+**Authors:**
 Your Name - @yourhandle
 License
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-Acknowledgements
+**Acknowledgements:**
 Tools/libraries used
 Tutorials or papers referenced
 Inspiration or collaborators
