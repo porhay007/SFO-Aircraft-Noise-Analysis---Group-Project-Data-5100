@@ -23,13 +23,13 @@ Communities living under busy flight paths near SFO experience frequent aircraft
 
 ## Data
 
-+ Source
+**Source:** 
 
-The dataset is obtained from Data.gov – San Francisco International Airport (SFO) Aircraft Noise Reports
+The dataset is obtained from Data.gov – San Francisco International Airport (SFO) Aircraft Noise Reports [San Francisco International Airport (SFO) Aircraft Noise Reports – Data.gov](https://catalog.data.gov/dataset/sfo-aircraft-noise-reports)
 .
 It contains publicly available data collected by the San Francisco International Airport Noise Office from 2018 to the present.
 
-+ Columns Used:
+**Column Used:** 
 - disturbance_date_time  
 - reporter_city  
 - reporter_postal_code  
