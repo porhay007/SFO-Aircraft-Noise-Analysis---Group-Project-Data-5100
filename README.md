@@ -23,8 +23,7 @@ project-root/
 │   ├── Cleaned_Aircraft_Noise_Night_SFO.csv
 │   └── uszips.csv
 ├── code/                 # Jupyter notebooks and scripts
-│   ├── Data_Cleaning.ipynb
-│   └── Modeling.ipynb
+│   ├── SFO_Aircraf_Noise_Complaint.ipynb
 ├── reports/              # Generated visualizations
 │   └── Sample.pdf
 ├── requirements.txt      # Project dependencies
