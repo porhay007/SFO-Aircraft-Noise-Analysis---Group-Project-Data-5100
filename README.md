@@ -23,8 +23,7 @@ project-root/
 │   ├── Cleaned_Aircraft_Noise_Night_SFO.csv
 │   └── uszips.csv
 ├── code/                 # Jupyter notebooks and scripts
-│   ├── Data_Cleaning.ipynb
-│   └── Modeling.ipynb
+│   ├── SFO_Aircraf_Noise_Complaint.ipynb
 ├── reports/              # Generated visualizations
 │   └── Sample.pdf
 ├── requirements.txt      # Project dependencies
@@ -80,17 +79,17 @@ Open Data Commons Public Domain Dedication and License (PDDL)
 
 The analysis is split into two main parts:
 
-### 1. Data Cleaning & EDA (`Code/Data_cleaning.ipynb`)
+### 1. Data Cleaning & EDA (`Code/SFO_Aircraf_Noise_Complaint.ipynb`)
 
-- Filters noise reports to night-time hours (8 PM – 7 AM).
-- Cleans missing or inconsistent data.
-- Aggregates complaints by city, hour, operation type, and aircraft type.
-- Visualizes complaint distribution by:
-  - Neighborhood (`reporter_city`)
-  - Aircraft type (`aircraft_type`)
-  - Hour of night (`hour`)
-  - Season of the year
-  - Operation type (Arrival/Departure)
+- Filters complaints to night-time hours (8 PM – 7 AM)
+- Cleans missing or inconsistent data and removes duplicates
+- Aggregates complaints by city, hour, operation type, and aircraft type
+- Visualizes distribution of complaints:
+  - By neighborhood (reporter_city) – top and least affected
+  - By aircraft type – highest and lowest complaint-generating types
+  - By hour of night – peak and lowest complaint hours 
+  - By season – Winter, Spring, Summer, Fall
+  - By operation type – Arrivals vs Departures (Arrivals account for 88.7% of complaints)
 
 ### 2. Predictive Modeling (`Code/Modeling.ipynb`)
 
@@ -101,17 +100,18 @@ The analysis is split into two main parts:
 - Encodes categorical variables and transforms skewed complaint counts using `log1p`.
 - Trains a **CatBoost Regressor** using 5-fold cross-validation.
 - Evaluates model performance:
-  - Mean R²: 0.62
-  - Mean MAE: 56
-- Performs scenario analysis (e.g., increasing aircraft altitude by 1000–5000 ft) to estimate potential reductions in complaints by neighborhood.
+  - Mean R²: 0.5896
+  - Mean MAE: 57.95
+- Scenario analysis: increasing aircraft altitude by 1,000 ft reduces predicted complaints, especially in Santa Cruz, Palo Alto, and Portola Valley
+- Key drivers of complaints: altitude, distance to SFO, operation type
 
 **Results:**
 
-- The model identifies the neighborhoods most affected by night-time aircraft noise.
-
-- Scenario analysis shows that increasing aircraft altitude reduces the number of predicted complaints, with Santa Cruz, Palo Alto, and Portola Valley experiencing the largest decreases.
-
-- Feature importance indicates that altitude, distance to SFO, and operation type are key drivers of complaints.
+- Most affected neighborhoods: Palo Alto, Portola Valley, Santa Cruz, Los Altos
+- Time patterns: Complaints peak at 8–9 PM and 6–7 AM, lowest between 2–4 AM
+- Operation type: Arrivals are the primary source of complaints (88.7%)
+- Aircraft type: A few large commercial jets generate most complaints; smaller aircraft contribute minimally
+- Mitigation insights: Increasing aircraft altitude by 1,000 ft can meaningfully reduce complaints, with largest benefits for neighborhoods directly under flight paths
 
 **Authors:**
 Porhay Rouen - @porhayrouen
@@ -122,8 +122,8 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 **Acknowledgements:**
 
-- Python libraries: pandas, numpy, seaborn, matplotlib, scikit-learn, CatBoost
+- **Python libraries**: pandas, numpy, seaborn, matplotlib, scikit-learn, CatBoost
 
-- Tutorials and Kaggle datasets used for SFO noise data
+- **Data Sources**: Primary noise complaint data was obtained from Data.gov – SFO Aircraft Noise Reports and additional ZIP code data (latitude, longitude, population) was sourced from SimpleMaps.
 
-- Inspiration from local environmental data research
+- **Inspiration and guidance**: This project was inspired by and developed using tutorials and examples from the DATA-5100 course materials by **Dr. Brian Fischer**.
