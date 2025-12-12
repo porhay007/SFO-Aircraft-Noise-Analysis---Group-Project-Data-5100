@@ -16,17 +16,18 @@ Communities living under busy flight paths near SFO experience frequent aircraft
 
 ## Project Structure
 
-├── data/ # Raw data files
-│ ├── Aircraft_Noise_Reports.csv
-│ └── Cleaned_Aircraft_Noise_Night_SFO.csv
-│ └── uszips.csv
-├── code/ # Jupyter notebooks and ts
-│ └── Data_Cleaning.ipynb
-│ └── Modeling.ipynb
-├── reports/  
-| └── Sample.pdf # Generated visualizations
-├── requirements.txt # Project dependencies
-└── README.md # Project documentation
+project-root/
+├── data/                 # Raw and processed data
+│   ├── Aircraft_Noise_Reports.csv
+│   ├── Cleaned_Aircraft_Noise_Night_SFO.csv
+│   └── uszips.csv
+├── code/                 # Jupyter notebooks and scripts
+│   ├── Data_Cleaning.ipynb
+│   └── Modeling.ipynb
+├── reports/              # Generated visualizations
+│   └── Sample.pdf
+├── requirements.txt      # Project dependencies
+└── README.md             # Project documentation
 
 ## Data
 
