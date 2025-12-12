@@ -29,6 +29,24 @@ project-root/
 ├── requirements.txt      # Project dependencies
 └── README.md             # Project documentation
 
+
+## Project Structure
+
+```text
+project-root/
+├── data/                 # Raw and processed data
+│   ├── Aircraft_Noise_Reports.csv
+│   ├── Cleaned_Aircraft_Noise_Night_SFO.csv
+│   └── uszips.csv
+├── code/                 # Jupyter notebooks and scripts
+│   ├── Data_Cleaning.ipynb
+│   └── Modeling.ipynb
+├── reports/              # Generated visualizations
+│   └── Sample.pdf
+├── requirements.txt      # Project dependencies
+└── README.md             # Project documentation
+
+
 ## Data
 
 **Source:**
