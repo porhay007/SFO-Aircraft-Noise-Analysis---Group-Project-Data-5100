@@ -54,8 +54,23 @@ For this project, the following columns were used:
 
 **Additional Data:**
 
-For modeling, US ZIP code latitude, longitude, and population data were joined to compute each neighborhood’s distance to SFO and provide population context for predictive modeling
-[US Zip Code Database](https://simplemaps.com/data/us-zips)
+To enhance predictive modeling, we incorporated US ZIP code data containing latitude, longitude, and population information. By joining this dataset with the noise complaints using the reporter’s postal code, we were able to:
+
+- Compute the distance from each neighborhood to San Francisco International Airport (SFO), allowing the model to account for proximity effects on complaint frequency.
+
+- Include population as a feature, providing context for neighborhood size and potential complaint density.
+
+Fields used from the ZIP code dataset:
+
+- zip : Postal code of the area
+
+- lat : Latitude of the ZIP code centroid
+
+- lng : Longitude of the ZIP code centroid
+
+- population : Total population of the ZIP code area
+
+Source: [US Zip Code Database – SimpleMaps](https://simplemaps.com/data/us-zips)
 
 **License:**  
 Open Data Commons Public Domain Dedication and License (PDDL)
@@ -82,7 +97,6 @@ The analysis is split into two main parts:
 - Feature engineering includes:
   - Cyclical hour features (`hour_sin`, `hour_cos`)
   - Late-night indicator (`is_late_night`)
-  - Aircraft size category (`aircraft_size`)
 - Encodes categorical variables and transforms skewed complaint counts using `log1p`.
 - Trains a **CatBoost Regressor** using 5-fold cross-validation.
 - Evaluates model performance:
