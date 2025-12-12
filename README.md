@@ -1,29 +1,30 @@
 # Aircraft Noise Impact Analysis Near San Francisco International Airport (SFO)
 
 ## Project Overview
-+ Objective
+
+- Objective
 
 To analyze and predict aircraft noise complaints near San Francisco International Airport (SFO) in order to understand which neighborhoods are most affected and identify key factors contributing to night-time disturbances.
 
-+ Domain
+- Domain
 
 Environmental Data Analysis / Transportation
 
-+ Problem Statement
+- Problem Statement
 
 Communities living under busy flight paths near SFO experience frequent aircraft noise, especially at night, which impacts their sleep and overall well-being. This project aims to investigate which neighborhoods report the most night-time complaints (8 PM – 7 AM) and how factors like aircraft type, altitude, operation type, and runway contribute to these patterns.
 
 ## Project Structure
 
-├── data/                 # Raw and processed data
-├── code/                 # Jupyter notebooks and Python scripts
-├── reports/              # Generated reports and visualizations
-├── requirements.txt      # Dependencies
-└── README.md             # Project documentation
+├── data/ # Raw and processed data
+├── code/ # Jupyter notebooks and Python scripts
+├── reports/ # Generated reports and visualizations
+├── requirements.txt # Dependencies
+└── README.md # Project documentation
 
 ## Data
 
-**Source:** 
+**Source:**
 
 The dataset is obtained from Data.gov – San Francisco International Airport (SFO) Aircraft Noise Reports [San Francisco International Airport (SFO) Aircraft Noise Reports – Data.gov](https://catalog.data.gov/dataset/sfo-aircraft-noise-reports)
 .
@@ -33,41 +34,72 @@ It contains publicly available data collected by the San Francisco International
 This dataset records aircraft noise complaints made by residents living near SFO flight paths.
 For this project, the following columns were used:
 
-- disturbance_date_time      : Date and time when the noise disturbance occurred
-- reporter_city              : City of the person who reported the complaint
-- reporter_postal_code       : Postal code of the complainant’s address
-- aircraft_pca_altitude      : Altitude of the aircraft during the disturbance
-- airport_id                 : Identifier of the airport (e.g., SFO)
-- operation_type             : Type of operation (Arrival or Departure)
-- aircraft_type              : Aircraft model/type (e.g., Boeing 737, Airbus A320)
-- hour                       : Extracted hour of disturbance, used for night-time analysis (8 PM – 7 AM)
+- disturbance_date_time : Date and time when the noise disturbance occurred
+- reporter_city : City of the person who reported the complaint
+- reporter_postal_code : Postal code of the complainant’s address
+- aircraft_pca_altitude : Altitude of the aircraft during the disturbance
+- airport_id : Identifier of the airport (e.g., SFO)
+- operation_type : Type of operation (Arrival or Departure)
+- aircraft_type : Aircraft model/type (e.g., Boeing 737, Airbus A320)
+- hour : Extracted hour of disturbance, used for night-time analysis (8 PM – 7 AM)
 
-**Access:**
+**Additional Data:**
 
-Due to GitHub’s file size limitations, only a sample file (/data/sample_aircraft_noise.csv) containing 100 records is included in this repository for demonstration purposes.
-The full cleaned dataset is publicly available on Kaggle:
-[Aircraft Noise Report SFO – Kaggle] (https://www.kaggle.com/datasets/porhayrouen/aircraft-noise-report-sfo)
+For modeling, US ZIP code latitude, longitude, and population data were joined to compute each neighborhood’s distance to SFO and provide population context for predictive modeling
+[US Zip Code Database](https://simplemaps.com/data/us-zips)
 
 **License:**  
 Open Data Commons Public Domain Dedication and License (PDDL)
 
-
-
-
-
-
 **Analysis:**
-Describe the notebooks and/or scripts used to perform the analysis. Specify the order in which the code should be run to reproduce the results.
+
+The analysis is split into two main parts:
+
+### 1. Data Cleaning & EDA (`Code/Data_cleaning.ipynb`)
+
+- Filters noise reports to night-time hours (8 PM – 7 AM).
+- Cleans missing or inconsistent data.
+- Aggregates complaints by city, hour, operation type, and aircraft type.
+- Visualizes complaint distribution by:
+  - Neighborhood (`reporter_city`)
+  - Aircraft type (`aircraft_type`)
+  - Hour of night (`hour`)
+  - Season of the year
+  - Operation type (Arrival/Departure)
+
+### 2. Predictive Modeling (`Code/Modeling.ipynb`)
+
+- Joins US ZIP lat/lon and population data to compute distances to SFO and include population as a feature.
+- Feature engineering includes:
+  - Cyclical hour features (`hour_sin`, `hour_cos`)
+  - Late-night indicator (`is_late_night`)
+  - Aircraft size category (`aircraft_size`)
+- Encodes categorical variables and transforms skewed complaint counts using `log1p`.
+- Trains a **CatBoost Regressor** using 5-fold cross-validation.
+- Evaluates model performance:
+  - Mean R²: 0.62
+  - Mean MAE: 56
+- Performs scenario analysis (e.g., increasing aircraft altitude by 1000–5000 ft) to estimate potential reductions in complaints by neighborhood.
 
 **Results:**
-Include a short discussion of the findings and what they imply.
+
+- The model identifies the neighborhoods most affected by night-time aircraft noise.
+
+- Scenario analysis shows that increasing aircraft altitude reduces the number of predicted complaints, with Santa Cruz, Palo Alto, and Portola Valley experiencing the largest decreases.
+
+- Feature importance indicates that altitude, distance to SFO, and operation type are key drivers of complaints.
 
 **Authors:**
-Your Name - @yourhandle
-License
+Porhay Rouen - @porhayrouen
+Muykhim Ing - @MuykhimIng
+
+**License**
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 **Acknowledgements:**
-Tools/libraries used
-Tutorials or papers referenced
-Inspiration or collaborators
+
+- Python libraries: pandas, numpy, seaborn, matplotlib, scikit-learn, CatBoost
+
+- Tutorials and Kaggle datasets used for SFO noise data
+
+- Inspiration from local environmental data research
