@@ -25,7 +25,7 @@ project-root/
 ├── code/                 # Jupyter notebooks and scripts
 │   ├── SFO_Aircraf_Noise_Complaint.ipynb
 ├── reports/              # Generated visualizations
-│   └── Sample.pdf
+│   └── SFO_Aircraft_Noise_Slide_Deck.pdf
 ├── requirements.txt      # Project dependencies
 └── README.md             # Project documentation
 
