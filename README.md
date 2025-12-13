@@ -79,7 +79,7 @@ Open Data Commons Public Domain Dedication and License (PDDL)
 
 The analysis is split into two main parts:
 
-### 1. Data Cleaning & EDA (`Code/SFO_Aircraf_Noise_Complaint.ipynb`)
+**1. Data Cleaning & EDA (`Code/SFO_Aircraf_Noise_Complaint.ipynb`)**
 
 - Filters complaints to night-time hours (8 PM – 7 AM)
 - Cleans missing or inconsistent data and removes duplicates
@@ -91,7 +91,7 @@ The analysis is split into two main parts:
   - By season – Winter, Spring, Summer, Fall
   - By operation type – Arrivals vs Departures (Arrivals account for 88.7% of complaints)
 
-### 2. Predictive Modeling (`Code/Modeling.ipynb`)
+**2. Predictive Modeling (`Code/Modeling.ipynb`)**
 
 - Joins US ZIP lat/lon and population data to compute distances to SFO and include population as a feature.
 - Feature engineering includes:
